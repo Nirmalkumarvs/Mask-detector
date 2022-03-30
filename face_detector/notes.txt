@@ -1,0 +1,66 @@
+     
+
+
+      5<-6->7->8->9->10->56->89->98<-78<-98 
+      
+1): 
+    curr=6 
+    prev=5 
+    succ=7   
+
+   cur.next=prev 
+   prev=curr 
+   cur=succ 
+
+
+
+for i in range(n-1):  
+    mini=i
+    for j in range(i+1,n):
+        if a[mini]>a[j]:
+            mini=j
+    a[mini],a[i]=a[i],a[mini]   
+
+i=0      1 
+i<n-1    n 
+i++      2(n-1) 
+j=i+1    n-1  
+j<n      n-1 + n-2 + n-3 + n-4 ... n-n = n^2 - (n)(n+1)/2 = n(n-1)//2 
+j++      n(n-1)-2 
+
+
+
+
+from heapq import heappop, heappush, heapify
+ 
+ 
+def print_array(arr: list):
+    for elem in arr:
+        print(elem, end=' ')
+ 
+
+def sort_k(arr: list, n: int, k: int):
+   
+    heap = arr[:k + 1]
+ 
+    heapify(heap)
+ 
+    
+    target_index = 0
+    for rem_elmnts_index in range(k + 1, n):
+        arr[target_index] = heappop(heap)
+        heappush(heap, arr[rem_elmnts_index])
+        target_index += 1
+ 
+    while heap:
+        arr[target_index] = heappop(heap)
+        target_index += 1
+ 
+k = 3
+arr = [2, 6, 3, 12, 56, 8]
+n = len(arr)
+sort_k(arr, n, k)
+ 
+print('Following is sorted array')
+print_array(arr)
+ 
